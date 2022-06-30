@@ -17,6 +17,5 @@
       passwordAuthentication = true;
       permitRootLogin = "no";
     };
-    gnome.gnome-keyring.enable = true;
   };
 }
