@@ -22,6 +22,7 @@ let
   ];
 
   neovimPkgs = with pkgs; [
+    shellcheck
     cmake-language-server
     sumneko-lua-language-server
     neovide
