@@ -7,6 +7,14 @@ let
   '';
 
   initExtra = ''
+    setopt    histverify
+    unsetopt  beep
+    stty stop undef
+
+    bindkey "^[[A" history-beginning-search-backward
+    bindkey "^[[B" history-beginning-search-forward
+    bindkey "^ "   autosuggest-accept
+
     zstyle ":completion:*" matcher-list "" "m:{a-zA-Z}={A-Za-z}" "r:|=*" "l:|=* r:|=*"
     zstyle ":completion:*" menu select
     zstyle ":completion:*" use-cache on
@@ -17,17 +25,7 @@ let
     bindkey -M menuselect "k"    vi-up-line-or-history
     bindkey -M menuselect "l"    vi-forward-char
     bindkey -M menuselect "^[[Z" reverse-menu-complete
-  '';
-
-  initBeforeCompInit = ''
-    setopt    histverify
-    unsetopt  beep
-    stty stop undef
-
-    bindkey "^[[A" history-beginning-search-backward
-    bindkey "^[[B" history-beginning-search-forward
-    bindkey "^ "   autosuggest-accept
-  '';
+  '' + builtins.readFile ./functions.zsh;
 
 in
 {
@@ -38,7 +36,6 @@ in
     defaultKeymap = "emacs";
     completionInit = completionInit;
     initExtra = initExtra;
-    initExtraBeforeCompInit = initBeforeCompInit;
     enableCompletion = true;
     enableAutosuggestions = true;
     enableSyntaxHighlighting = true;
@@ -51,18 +48,19 @@ in
     };
 
     shellAliases = {
-      x = "exit 0";
-      v = "nvim";
-      vd = "neovide";
-      xo = "xdg-open";
-      ls = "exa";
-      ll = "exa -lah --icons --git --group-directories-first";
-      sd = "systemd-analyze";
-      shn = "shutdown now";
-      dump = "od -w16 -A x -t x1z -v";
-      grep = "grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}";
-      egrep = "egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}";
-      fgrep = "fgrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}";
+      x       = "exit 0";
+      v       = "nvim";
+      vd      = "neovide";
+      xo      = "xdg-open";
+      lg      = "lazygit";
+      ls      = "exa";
+      ll      = "exa -lah --icons --git --group-directories-first";
+      sd      = "systemd-analyze";
+      shn     = "shutdown now";
+      dump    = "od -w16 -A x -t x1z -v";
+      grep    = "grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}";
+      egrep   = "egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}";
+      fgrep   = "fgrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}";
       encrypt = "gpg --symmetric --force-mdc --cipher-algo aes256 --armor";
       decrypt = "gpg --decrypt";
     };

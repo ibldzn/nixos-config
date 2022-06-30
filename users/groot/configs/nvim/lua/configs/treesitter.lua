@@ -31,7 +31,6 @@ function M.setup()
       "query",
       "regex",
       "rust",
-      "teal",
       "toml",
       "vim",
       "yaml",

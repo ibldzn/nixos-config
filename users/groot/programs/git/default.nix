@@ -26,7 +26,8 @@ in
     };
 
     aliases = {
-      amend = "commit --amend -m";
+      aa  = "add -A";
+      am  = "commit --amend -m";
       br  = "branch";
       co  = "checkout";
       st  = "status";

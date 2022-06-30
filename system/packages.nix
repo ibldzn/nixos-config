@@ -14,26 +14,10 @@
   xdg.portal.enable = true;
 
   environment.systemPackages = with pkgs; [
-    fd
-    mpv
-    gcc
-    exa
-    gcc
+    vim
     curl
-    file
-    xsel
-    cmake
-    neovim
-    ntfs3g
-    ripgrep
-    neovide
+    kitty
     firefox
-    zathura
-    neofetch
-    alacritty
-    imagemagick
-    qbittorrent
-    wl-clipboard
   ];
 
   programs = {
