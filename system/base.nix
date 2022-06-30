@@ -2,13 +2,16 @@
 {
   hardware.cpu.intel.updateMicrocode = true;
 
-  boot.loader = {
-    timeout = 5;
-    systemd-boot = {
-      enable = true;
-      editor = false;
+  boot = {
+    cleanTmpDir = true;
+    loader = {
+      timeout = 5;
+      systemd-boot = {
+        enable = true;
+        editor = false;
+      };
+      efi.canTouchEfiVariables = false;
     };
-    efi.canTouchEfiVariables = false;
   };
 
   time.timeZone = "Asia/Jakarta";
