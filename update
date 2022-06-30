@@ -4,7 +4,7 @@ self_path="$(realpath $(dirname $0))"
 
 case "$1" in
     "user" )
-        home-manager -f "$self_path/users/$(whoami)/home.nix"
+        home-manager -f "$self_path/users/$(whoami)/home.nix" switch
         ;;
     "system" )
         sudo nixos-rebuild -I nixos-config "$self_path/system/configuration.nix" switch
