@@ -1,0 +1,14 @@
+gui:
+  showFileTree: false
+  skipUnstageLineWarning: true
+  theme:
+    lightTheme: false
+    selectedLineBgColor:
+      - underline
+    selectedRangeBgColor:
+      - underline
+
+git:
+  paging:
+    colorArg: never
+    pager: delta --dark --paging=never

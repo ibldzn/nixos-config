@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+killall -q polybar
+
+script_dir="$(printf "%q " "$(realpath -s "$0")")"
+cur_dir="${script_dir%/*}"
+
+bars="$(sed -nE 's:\[bar/(.*)\]$:\1:p' "$cur_dir/config.ini")"
+
+while IFS= read -r bar; do
+    [[ "$bar" =~ ^base.* ]] && continue
+    echo "---" | tee -a "/tmp/polybar_$bar.log"
+    polybar -c "$HOME/.config/polybar/config.ini" "$bar" 2>&1 | tee -a "/tmp/polybar_$bar.log" & disown
+done <<< "$bars"
+
+echo "polybar launched.."
