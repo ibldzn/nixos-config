@@ -1,4 +1,5 @@
 [
+  ./alacritty
   # ./dconf
   ./git
   ./mpv

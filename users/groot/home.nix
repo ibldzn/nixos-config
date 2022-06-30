@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 let
   defaultPkgs = with pkgs; [
-    alacritty
     bat
     clang-tools
     cmake
