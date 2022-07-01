@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   hardware.cpu.intel.updateMicrocode = true;
 
@@ -45,5 +45,11 @@
       layout     = "us";
       xkbOptions = "caps:ctrl_modifier";
     };
+  };
+
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryMax = 8 * 1024 * 1024 * 1024; # 8GB
   };
 }

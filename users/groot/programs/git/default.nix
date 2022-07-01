@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   gitConfig = {
     core.editor         = "nvim";

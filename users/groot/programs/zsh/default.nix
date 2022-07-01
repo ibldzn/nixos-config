@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 let
   completionInit = ''
     autoload -Uz compinit && \
