@@ -4,10 +4,12 @@ self_path="$(realpath $(dirname $0))"
 
 case "$1" in
     "user" )
-        home-manager -f "$self_path/users/$(whoami)/home.nix" switch
+        shift
+        home-manager -f "$self_path/users/$(whoami)/home.nix" switch "$@"
         ;;
     "system" )
-        sudo nixos-rebuild -I nixos-config="$self_path/system/configuration.nix" switch
+        shift
+        sudo nixos-rebuild -I nixos-config="$self_path/system/configuration.nix" switch "$@"
         ;;
     * )
         >&2 echo "Usage ${0##*/} <system|user>"

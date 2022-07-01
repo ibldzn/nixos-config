@@ -8,7 +8,11 @@ let
     fd
     file
     gcc
+    htop
     imagemagick
+    jq
+    libnotify
+    neofetch
     ntfs3g
     qbittorrent
     ripgrep
@@ -28,8 +32,10 @@ let
   devTools = with pkgs; [
     clang-tools
     cmake
+    gnumake
     lazygit
     shellcheck
+    stylua
   ];
 
   debuggers = with pkgs; [
@@ -38,20 +44,18 @@ let
     lldb
   ];
 
-  formatters = with pkgs; [
-    stylua
-  ];
-
   devPkgs =
     debuggers       ++
     devTools        ++
-    languageServers ++
-    formatters
+    languageServers
   ;
 in
 {
   imports = 
-    (import ./programs);
+    (import ./wm)       ++
+    (import ./bar)      ++
+    (import ./programs)
+  ;
 
   home = {
     packages      = 
