@@ -2,8 +2,6 @@
 let
   defaultPkgs = with pkgs; [
     bat
-    clang-tools
-    cmake
     coreutils
     curl
     exa
@@ -11,7 +9,6 @@ let
     file
     gcc
     imagemagick
-    lazygit
     ntfs3g
     qbittorrent
     ripgrep
@@ -21,14 +18,36 @@ let
     zathura
   ];
 
-  neovimPkgs = with pkgs; [
-    shellcheck
+  languageServers = with pkgs; [
     cmake-language-server
-    sumneko-lua-language-server
-    neovide
-    neovim
+    pyright
     rust-analyzer
+    sumneko-lua-language-server
   ];
+
+  devTools = with pkgs; [
+    clang-tools
+    cmake
+    lazygit
+    shellcheck
+  ];
+
+  debuggers = with pkgs; [
+    delve
+    gdb
+    lldb
+  ];
+
+  formatters = with pkgs; [
+    stylua
+  ];
+
+  devPkgs =
+    debuggers       ++
+    devTools        ++
+    languageServers ++
+    formatters
+  ;
 in
 {
   imports = 
@@ -37,7 +56,7 @@ in
   home = {
     packages      = 
       defaultPkgs ++
-      neovimPkgs
+      devPkgs
     ;
     username      = "groot";
     homeDirectory = "/home/groot";
